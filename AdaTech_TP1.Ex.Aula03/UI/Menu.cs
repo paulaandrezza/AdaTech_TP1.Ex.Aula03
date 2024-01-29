@@ -100,9 +100,10 @@
 
         public static string[] GenerateOptions(int lengthItems)
         {
+            string[] label = new string[] { "Operações com listas", "Operações com pilhas", "Operações com filas", "Operações com dicionário" };
             string[] options = new string[lengthItems + 1];
             for (int i = 0; i < lengthItems; i++)
-                options[i] = $"Exercicio {i + 1:00}";
+                options[i] = $"Exercicio {i + 1:00} - {label[i]}";
 
             options[lengthItems] = "Sair";
 
