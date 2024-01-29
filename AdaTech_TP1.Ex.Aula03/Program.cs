@@ -14,9 +14,10 @@ namespace AdaTech_TP1.Ex.Aula03
                 new Exercise03(),
                 new Exercise04(),
             ];
+            string[] label = new string[] { "Operações com listas", "Operações com pilhas", "Operações com filas", "Operações com dicionário" };
             while (true)
             {
-                var options = Menu.GenerateOptions(exercises.Length);
+                var options = Menu.GenerateOptions(exercises.Length, label);
                 int option = Menu.DisplayMenu(options, Title.TitleExercises());
                 if (option == exercises.Length)
                     break;
