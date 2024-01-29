@@ -20,7 +20,7 @@
                     "Inefável"
                 };
 
-                List<string> result = FiltrarStringsPorTamanho(input, 10);
+                List<string> result = FilterStringsBySize(input, 10);
 
                 Console.WriteLine("Strings com 10 ou mais caracteres:");
                 foreach (var str in result)
@@ -35,30 +35,30 @@
             }
         }
 
-        static List<string> FiltrarStringsPorTamanho(List<string> lista, int tamanhoMinimo)
+        static List<string> FilterStringsBySize(List<string> words, int minLength)
         {
             List<string> result = new List<string>();
 
-            foreach (var str in lista)
+            foreach (var str in words)
             {
-                if (ObterComprimento(str) >= tamanhoMinimo)
+                if (GetLength(str) >= minLength)
                     result.Add(str);
             }
 
             return result;
         }
-        static int ObterComprimento(string str)
+        static int GetLength(string str)
         {
-            int comprimento = 0;
+            int length = 0;
             foreach (char c in str)
             {
                 if (c == '\0')
                     break;
 
-                comprimento++;
+                length++;
             }
 
-            return comprimento;
+            return length;
         }
     }
 }

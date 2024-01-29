@@ -7,9 +7,9 @@
             try
             {
                 Console.Write("Digite a expressão matemática: ");
-                string expressao = Console.ReadLine();
+                string expression = Console.ReadLine();
 
-                Console.WriteLine(VerificarBalanceamento(expressao) ? "Expressão balanceada" : "Expressão não balanceada");
+                Console.WriteLine(CheckBalancing(expression) ? "Expressão balanceada" : "Expressão não balanceada");
             }
             catch (Exception ex)
             {
@@ -17,24 +17,24 @@
             }
         }
 
-        static bool VerificarBalanceamento(string expressao)
+        static bool CheckBalancing(string expression)
         {
             Stack<char> pilha = new Stack<char>();
 
-            foreach (char caractere in expressao)
+            foreach (char character in expression)
             {
-                if (caractere == '(' || caractere == '[' || caractere == '{')
+                if (character == '(' || character == '[' || character == '{')
                 {
-                    pilha.Push(caractere);
+                    pilha.Push(character);
                 }
-                else if (caractere == ')' || caractere == ']' || caractere == '}')
+                else if (character == ')' || character == ']' || character == '}')
                 {
                     if (pilha.Count == 0)
                         return false;
 
                     char topoPilha = pilha.Pop();
 
-                    if (!SaoPares(topoPilha, caractere))
+                    if (!SameType(topoPilha, character))
                         return false;
                 }
             }
@@ -42,11 +42,11 @@
             return pilha.Count == 0;
         }
 
-        static bool SaoPares(char abertura, char fechamento)
+        static bool SameType(char opening, char closure)
         {
-            return (abertura == '(' && fechamento == ')') ||
-                   (abertura == '[' && fechamento == ']') ||
-                   (abertura == '{' && fechamento == '}');
+            return (opening == '(' && closure == ')') ||
+                   (opening == '[' && closure == ']') ||
+                   (opening == '{' && closure == '}');
         }
     }
 }

@@ -7,9 +7,9 @@
             try
             {
                 Console.Write("Digite o número de jogadores: ");
-                int numeroDeJogadores = int.Parse(Console.ReadLine());
+                int numberOfPlayers = int.Parse(Console.ReadLine());
 
-                SimularJogoBatataQuente(numeroDeJogadores);
+                SimulateGameHotPotato(numberOfPlayers);
             }
             catch (Exception ex)
             {
@@ -17,34 +17,34 @@
             }
         }
 
-        static void SimularJogoBatataQuente(int numeroDeJogadores)
+        static void SimulateGameHotPotato(int numberOfPlayers)
         {
-            Queue<int> filaJogadores = new Queue<int>();
+            Queue<int> queuePlayers = new Queue<int>();
 
-            for (int i = 1; i <= numeroDeJogadores; i++)
-                filaJogadores.Enqueue(i);
+            for (int i = 1; i <= numberOfPlayers; i++)
+                queuePlayers.Enqueue(i);
 
             Random random = new Random();
-            int passesAteExplodir = random.Next(1, 101);
+            int passesUntilExplode = random.Next(1, 101);
 
-            Console.WriteLine($"Número de passes até a batata explodir: {passesAteExplodir}");
+            Console.WriteLine($"Número de passes até a batata explodir: {passesUntilExplode}");
 
-            for (int i = 1; i < passesAteExplodir; i++)
+            for (int i = 1; i < passesUntilExplode; i++)
             {
-                ImprimirJogadores(filaJogadores);
-                int jogadorAtual = filaJogadores.Dequeue();
-                filaJogadores.Enqueue(jogadorAtual);
+                PrintPlayers(queuePlayers);
+                int currentPlayer = queuePlayers.Dequeue();
+                queuePlayers.Enqueue(currentPlayer);
             }
-            ImprimirJogadores(filaJogadores);
+            PrintPlayers(queuePlayers);
 
-            int jogadorEliminado = filaJogadores.Dequeue();
-            Console.WriteLine($"Jogador {jogadorEliminado} eliminado!");
+            int playerEliminated = queuePlayers.Dequeue();
+            Console.WriteLine($"Jogador {playerEliminated} eliminado!");
 
         }
 
-        static void ImprimirJogadores(Queue<int> jogadores)
+        static void PrintPlayers(Queue<int> players)
         {
-            Console.WriteLine(string.Join(", ", jogadores.Select(i => i.ToString())));
+            Console.WriteLine(string.Join(", ", players.Select(i => i.ToString())));
         }
     }
 }
